@@ -1,0 +1,4 @@
+{
+  "main": "./lib/link",
+  "description": "Open the link under the cursor in a browser using `ctrl-O`."
+}
