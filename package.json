@@ -1,6 +1,6 @@
 {
   "name": "link",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "./lib/link",
   "description": "Open the link under the cursor in a browser using `ctrl-O`.",
   "repository": {
