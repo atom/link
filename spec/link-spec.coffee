@@ -1,5 +1,4 @@
 RootView = require 'root-view'
-Editor = require 'editor'
 shell = require 'shell'
 
 describe "link package", ->
