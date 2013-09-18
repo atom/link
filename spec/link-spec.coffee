@@ -1,4 +1,4 @@
-RootView = require 'root-view'
+{RootView} = require 'atom-api'
 shell = require 'shell'
 
 describe "link package", ->
