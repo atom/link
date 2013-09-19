@@ -1,5 +1,4 @@
-RootView = require 'root-view'
-Editor = require 'editor'
+{RootView} = require 'atom'
 shell = require 'shell'
 
 describe "link package", ->
