@@ -14,7 +14,7 @@
     "atom": "*"
   },
   "dependencies": {
-    "first-mate": "0.1.0"
+    "first-mate": "0.2.0"
   },
   "publishConfig": {
     "registry": "https://atom.cloudant.com/registry/_design/app/_rewrite"
