@@ -8,7 +8,7 @@ describe "link package", ->
     atom.activatePackage('javascript-tmbundle', sync: true)
     atom.activatePackage('hyperlink-helper-tmbundle', sync: true)
     window.rootView = new RootView
-    rootView.open('sample.js')
+    rootView.openSync('sample.js')
     atom.activatePackage('link')
     rootView.attachToDom()
     editor = rootView.getActiveView()
