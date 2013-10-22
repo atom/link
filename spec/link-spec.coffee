@@ -5,8 +5,8 @@ describe "link package", ->
   [editor] = []
 
   beforeEach ->
-    atom.activatePackage('javascript-tmbundle', sync: true)
-    atom.activatePackage('hyperlink-helper-tmbundle', sync: true)
+    atom.activatePackage('language-javascript', sync: true)
+    atom.activatePackage('language-hyperlink', sync: true)
     window.rootView = new RootView
     rootView.openSync('sample.js')
     atom.activatePackage('link')
