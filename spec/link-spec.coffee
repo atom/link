@@ -5,13 +5,13 @@ describe "link package", ->
   [editor] = []
 
   beforeEach ->
-    atom.activatePackage('language-javascript', sync: true)
-    atom.activatePackage('language-hyperlink', sync: true)
-    window.rootView = new RootView
-    rootView.openSync('sample.js')
-    atom.activatePackage('link')
-    rootView.attachToDom()
-    editor = rootView.getActiveView()
+    atom.packages.activatePackage('language-javascript', sync: true)
+    atom.packages.activatePackage('language-hyperlink', sync: true)
+    atom.rootView = new RootView
+    atom.rootView.openSync('sample.js')
+    atom.packages.activatePackage('link')
+    atom.rootView.attachToDom()
+    editor = atom.rootView.getActiveView()
     editor.insertText("// http://github.com\n")
 
   describe "when the cursor is on a link", ->
