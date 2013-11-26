@@ -1,4 +1,4 @@
-{RootView} = require 'atom'
+{WorkspaceView} = require 'atom'
 shell = require 'shell'
 
 describe "link package", ->
@@ -7,11 +7,11 @@ describe "link package", ->
   beforeEach ->
     atom.packages.activatePackage('language-javascript', sync: true)
     atom.packages.activatePackage('language-hyperlink', sync: true)
-    atom.rootView = new RootView
-    atom.rootView.openSync('sample.js')
+    atom.workspaceView = new WorkspaceView
+    atom.workspaceView.openSync('sample.js')
     atom.packages.activatePackage('link')
-    atom.rootView.attachToDom()
-    editor = atom.rootView.getActiveView()
+    atom.workspaceView.attachToDom()
+    editor = atom.workspaceView.getActiveView()
     editor.insertText("// http://github.com\n")
 
   describe "when the cursor is on a link", ->

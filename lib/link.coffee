@@ -1,7 +1,7 @@
 module.exports =
   activate: ->
-    atom.rootView.command 'link:open', ->
-      editSession = atom.rootView.getActivePaneItem()
+    atom.workspaceView.command 'link:open', ->
+      editSession = atom.workspaceView.getActivePaneItem()
       return unless editSession?
 
       token = editSession.tokenForBufferPosition(editSession.getCursorBufferPosition())
