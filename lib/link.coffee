@@ -1,10 +1,10 @@
 module.exports =
   activate: ->
     atom.workspaceView.command 'link:open', ->
-      editSession = atom.workspaceView.getActivePaneItem()
-      return unless editSession?
+      editor = atom.workspaceView.getActivePaneItem()
+      return unless editor?
 
-      token = editSession.tokenForBufferPosition(editSession.getCursorBufferPosition())
+      token = editor.tokenForBufferPosition(editor.getCursorBufferPosition())
       return unless token?
 
       unless @selector?
