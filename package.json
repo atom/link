@@ -3,20 +3,11 @@
   "version": "0.11.0",
   "main": "./lib/link",
   "description": "Open the link under the cursor in a browser using `ctrl-O`.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/atom/link.git"
-  },
-  "bugs": {
-    "url": "https://github.com/atom/link/issues"
-  },
+  "repository": "https://github.com/atom/link",
   "engines": {
     "atom": "*"
   },
   "dependencies": {
     "first-mate": "~0.4.0"
-  },
-  "publishConfig": {
-    "registry": "https://atom.cloudant.com/registry/_design/app/_rewrite"
   }
 }
