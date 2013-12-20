@@ -1,6 +1,6 @@
 {
   "name": "link",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "main": "./lib/link",
   "description": "Open the link under the cursor in a browser using `ctrl-O`.",
   "repository": "https://github.com/atom/link",
