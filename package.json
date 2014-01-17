@@ -8,6 +8,6 @@
     "atom": "*"
   },
   "dependencies": {
-    "first-mate": "~0.5.0"
+    "first-mate": "1.x"
   }
 }
