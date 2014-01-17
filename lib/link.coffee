@@ -1,6 +1,6 @@
 module.exports =
   activate: ->
-    atom.workspaceView.command 'link:open', ->
+    atom.workspaceView.command 'link:open', '.editor', ->
       editor = atom.workspaceView.getActivePaneItem()
       return unless editor?
 
