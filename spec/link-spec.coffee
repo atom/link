@@ -34,6 +34,7 @@ describe "link package", ->
         {editor} = editorView
         editor.setText """
           you should [click][here]
+          you should not [click][her]
 
           [here]: http://github.com
         """
@@ -46,3 +47,10 @@ describe "link package", ->
 
         expect(shell.openExternal).toHaveBeenCalled()
         expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
+
+        shell.openExternal.reset()
+        editor.setCursorBufferPosition([1,24])
+        editorView.trigger('link:open')
+
+        expect(shell.openExternal).toHaveBeenCalled()
+        expect(shell.openExternal.argsForCall[0][0]).toBe 'her'

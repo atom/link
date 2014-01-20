@@ -14,16 +14,15 @@ module.exports =
         @selector = new ScopeSelector('markup.underline.link')
 
       if @selector.matches(token.scopes)
+        url = token.value
         if editor.getGrammar().scopeName is 'source.gfm'
-          url = @linkUrlForName(editor.getBuffer(), token.value)
-        else
-          url = token.value
+          url = @linkUrlForName(editor.getBuffer(), url)
 
         require('shell').openExternal(url)
 
   linkUrlForName: (buffer, linkName) ->
+    url = linkName
     regex = new RegExp("^\\s*\\[#{_.escapeRegExp(linkName)}\\]\\s*:\\s*(.+)$", 'g')
-    url = null
     buffer.backwardsScanInRange regex, buffer.getRange(), ({match, stop}) ->
       url = match[1]
       stop()
