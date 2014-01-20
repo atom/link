@@ -9,7 +9,6 @@ describe "link package", ->
 
     atom.workspaceView = new WorkspaceView
     atom.packages.activatePackage('link')
-    atom.workspaceView.attachToDom()
 
   describe "when the cursor is on a link", ->
     it "opens the link using the 'open' command", ->
