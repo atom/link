@@ -3,12 +3,19 @@ shell = require 'shell'
 
 describe "link package", ->
   beforeEach ->
-    atom.packages.activatePackage('language-gfm', sync: true)
-    atom.packages.activatePackage('language-javascript', sync: true)
-    atom.packages.activatePackage('language-hyperlink', sync: true)
+    waitsForPromise ->
+      atom.packages.activatePackage('language-gfm')
+
+    waitsForPromise ->
+      atom.packages.activatePackage('language-javascript')
+
+    waitsForPromise ->
+      atom.packages.activatePackage('language-hyperlink')
 
     atom.workspaceView = new WorkspaceView
-    atom.packages.activatePackage('link')
+
+    waitsForPromise ->
+      atom.packages.activatePackage('link')
 
   describe "when the cursor is on a link", ->
     it "opens the link using the 'open' command", ->
