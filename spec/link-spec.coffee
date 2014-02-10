@@ -45,7 +45,9 @@ describe "link package", ->
 
           [here]: http://github.com
         """
+
         spyOn(shell, 'openExternal')
+        editor.setCursorBufferPosition([0,0])
         editorView.trigger('link:open')
         expect(shell.openExternal).not.toHaveBeenCalled()
 
