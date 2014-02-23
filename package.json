@@ -2,7 +2,7 @@
   "name": "link",
   "version": "0.17.0",
   "main": "./lib/link",
-  "description": "Open the link under the cursor in a browser using `ctrl-O`.",
+  "description": "Opens http/https links under the cursor using `ctrl-shift-o`.",
   "license": "MIT",
   "repository": "https://github.com/atom/link",
   "engines": {
