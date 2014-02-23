@@ -9,13 +9,13 @@ module.exports =
       return unless editor?
 
       token = editor.tokenForBufferPosition(editor.getCursorBufferPosition())
-      return unless token?
+      return unless token?.value
 
       unless @selector?
         {ScopeSelector} = require 'first-mate'
         @selector = new ScopeSelector('markup.underline.link')
 
-      if @selector.matches(token.scopes) and token.value
+      if @selector.matches(token.scopes)
         link = token.value
         if editor.getGrammar().scopeName is 'source.gfm'
           link = linkForName(editor.getBuffer(), link)
