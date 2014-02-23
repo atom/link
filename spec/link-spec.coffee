@@ -61,5 +61,19 @@ describe "link package", ->
         editor.setCursorBufferPosition([1,24])
         editorView.trigger('link:open')
 
-        expect(shell.openExternal).toHaveBeenCalled()
-        expect(shell.openExternal.argsForCall[0][0]).toBe 'her'
+        expect(shell.openExternal).not.toHaveBeenCalled()
+
+    it "does not open on http/https links", ->
+      atom.workspaceView.openSync('sample.js')
+      editorView = atom.workspaceView.getActiveView()
+      {editor} = editorView
+      editor.setText("// ftp://github.com\n")
+
+      spyOn(shell, 'openExternal')
+      editorView.trigger('link:open')
+      expect(shell.openExternal).not.toHaveBeenCalled()
+
+      editor.setCursorBufferPosition([0,5])
+      editorView.trigger('link:open')
+
+      expect(shell.openExternal).not.toHaveBeenCalled()

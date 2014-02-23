@@ -1,3 +1,4 @@
+url = require 'url'
 shell = require 'shell'
 _ = require 'underscore-plus'
 
@@ -14,17 +15,19 @@ module.exports =
         {ScopeSelector} = require 'first-mate'
         @selector = new ScopeSelector('markup.underline.link')
 
-      if @selector.matches(token.scopes)
-        url = token.value
+      if @selector.matches(token.scopes) and token.value
+        link = token.value
         if editor.getGrammar().scopeName is 'source.gfm'
-          url = linkUrlForName(editor.getBuffer(), url)
+          link = linkForName(editor.getBuffer(), link)
 
-        shell.openExternal(url)
+        {protocol} = url.parse(link)
+        if protocol is 'http:' or protocol is 'https:'
+          shell.openExternal(link)
 
-linkUrlForName = (buffer, linkName) ->
-  url = linkName
+linkForName = (buffer, linkName) ->
+  link = linkName
   regex = new RegExp("^\\s*\\[#{_.escapeRegExp(linkName)}\\]\\s*:\\s*(.+)$", 'g')
   buffer.backwardsScanInRange regex, buffer.getRange(), ({match, stop}) ->
-    url = match[1]
+    link = match[1]
     stop()
-  url
+  link

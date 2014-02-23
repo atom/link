@@ -1,3 +1,3 @@
 # Link package
 
-Open links under the cursor using `ctrl-0`.
+Open http/https links under the cursor using `ctrl-shift-o`.
