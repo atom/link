@@ -1,4 +1,5 @@
-{_} = require 'atom'
+shell = require 'shell'
+_ = require 'underscore-plus'
 
 module.exports =
   activate: ->
@@ -16,14 +17,14 @@ module.exports =
       if @selector.matches(token.scopes)
         url = token.value
         if editor.getGrammar().scopeName is 'source.gfm'
-          url = @linkUrlForName(editor.getBuffer(), url)
+          url = linkUrlForName(editor.getBuffer(), url)
 
-        require('shell').openExternal(url)
+        shell.openExternal(url)
 
-  linkUrlForName: (buffer, linkName) ->
-    url = linkName
-    regex = new RegExp("^\\s*\\[#{_.escapeRegExp(linkName)}\\]\\s*:\\s*(.+)$", 'g')
-    buffer.backwardsScanInRange regex, buffer.getRange(), ({match, stop}) ->
-      url = match[1]
-      stop()
-    url
+linkUrlForName = (buffer, linkName) ->
+  url = linkName
+  regex = new RegExp("^\\s*\\[#{_.escapeRegExp(linkName)}\\]\\s*:\\s*(.+)$", 'g')
+  buffer.backwardsScanInRange regex, buffer.getRange(), ({match, stop}) ->
+    url = match[1]
+    stop()
+  url
