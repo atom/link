@@ -4,8 +4,8 @@ _ = require 'underscore-plus'
 
 module.exports =
   activate: ->
-    atom.workspaceView.command 'link:open', '.editor', =>
-      editor = atom.workspaceView.getActivePaneItem()
+    atom.workspaceView.command 'link:open', =>
+      editor = atom.workspace.getActiveEditor()
       return unless editor?
 
       token = editor.tokenForBufferPosition(editor.getCursorBufferPosition())
