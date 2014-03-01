@@ -64,7 +64,7 @@ describe "link package", ->
 
         expect(shell.openExternal).not.toHaveBeenCalled()
 
-    it "does not open on http/https links", ->
+    it "does not open non http/https links", ->
       atom.workspaceView.openSync('sample.js')
       editorView = atom.workspaceView.getActiveView()
       {editor} = editorView
