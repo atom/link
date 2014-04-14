@@ -1,2 +1,2 @@
-'.workspace .platform-darwin':
+'.platform-darwin .workspace':
   'ctrl-O': 'link:open'
