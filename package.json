@@ -9,7 +9,7 @@
     "atom": "*"
   },
   "dependencies": {
-    "first-mate": "1.x",
+    "first-mate": "2.x",
     "underscore-plus": "1.x"
   }
 }
