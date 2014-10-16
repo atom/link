@@ -16,7 +16,9 @@ describe "link package", ->
     atom.workspace = atom.workspaceView.model
 
     waitsForPromise ->
-      atom.packages.activatePackage('link')
+      activationPromise = atom.packages.activatePackage('link')
+      atom.workspaceView.trigger('link:open')
+      activationPromise
 
   describe "when the cursor is on a link", ->
     it "opens the link using the 'open' command", ->
