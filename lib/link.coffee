@@ -34,7 +34,6 @@ linkUnderCursor = (editor) ->
   if cursorPosition.column > 0
     linkAtPosition(editor, cursorPosition.translate([0, -1]))
 
-
 # Get the link at the buffer position in the editor.
 #
 # Returns a {String} link or undefined if no link found.
