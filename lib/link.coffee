@@ -9,7 +9,7 @@ module.exports =
     atom.commands.add 'atom-workspace', 'link:open': openLink
 
 openLink = ->
-  editor = atom.workspace.getActiveEditor()
+  editor = atom.workspace.getActiveTextEditor()
   return unless editor?
 
   link = linkUnderCursor(editor)
