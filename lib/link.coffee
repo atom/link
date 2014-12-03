@@ -6,7 +6,7 @@ selector = null
 
 module.exports =
   activate: ->
-    atom.commands.add 'atom-workspace', 'link:open': openLink
+    atom.commands.add('atom-workspace', 'link:open', openLink)
 
 openLink = ->
   editor = atom.workspace.getActiveTextEditor()
