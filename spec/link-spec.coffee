@@ -1,4 +1,3 @@
-{WorkspaceView} = require 'atom'
 shell = require 'shell'
 
 describe "link package", ->
@@ -12,12 +11,9 @@ describe "link package", ->
     waitsForPromise ->
       atom.packages.activatePackage('language-hyperlink')
 
-    atom.workspaceView = new WorkspaceView
-    atom.workspace = atom.workspaceView.model
-
     waitsForPromise ->
       activationPromise = atom.packages.activatePackage('link')
-      atom.workspaceView.trigger('link:open')
+      atom.commands.dispatch(atom.views.getView(atom.workspace), 'link:open')
       activationPromise
 
   describe "when the cursor is on a link", ->
@@ -26,30 +22,29 @@ describe "link package", ->
         atom.workspace.open('sample.js')
 
       runs ->
-        editorView = atom.workspaceView.getActiveView()
-        {editor} = editorView
+        editor = atom.workspace.getActiveTextEditor()
         editor.setText("// \"http://github.com\"")
 
         spyOn(shell, 'openExternal')
-        editorView.trigger('link:open')
+        atom.commands.dispatch(atom.views.getView(editor), 'link:open')
         expect(shell.openExternal).not.toHaveBeenCalled()
 
         editor.setCursorBufferPosition([0,4])
-        editorView.trigger('link:open')
+        atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).toHaveBeenCalled()
         expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
 
         shell.openExternal.reset()
         editor.setCursorBufferPosition([0,8])
-        editorView.trigger('link:open')
+        atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).toHaveBeenCalled()
         expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
 
         shell.openExternal.reset()
         editor.setCursorBufferPosition([0,21])
-        editorView.trigger('link:open')
+        atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).toHaveBeenCalled()
         expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
@@ -60,8 +55,7 @@ describe "link package", ->
           atom.workspace.open('README.md')
 
         runs ->
-          editorView = atom.workspaceView.getActiveView()
-          {editor} = editorView
+          editor = atom.workspace.getActiveTextEditor()
           editor.setText """
             you should [click][here]
             you should not [click][her]
@@ -71,18 +65,18 @@ describe "link package", ->
 
           spyOn(shell, 'openExternal')
           editor.setCursorBufferPosition([0,0])
-          editorView.trigger('link:open')
+          atom.commands.dispatch(atom.views.getView(editor), 'link:open')
           expect(shell.openExternal).not.toHaveBeenCalled()
 
           editor.setCursorBufferPosition([0,20])
-          editorView.trigger('link:open')
+          atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
           expect(shell.openExternal).toHaveBeenCalled()
           expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
 
           shell.openExternal.reset()
           editor.setCursorBufferPosition([1,24])
-          editorView.trigger('link:open')
+          atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
           expect(shell.openExternal).not.toHaveBeenCalled()
 
@@ -91,15 +85,14 @@ describe "link package", ->
         atom.workspace.open('sample.js')
 
       runs ->
-        editorView = atom.workspaceView.getActiveView()
-        {editor} = editorView
+        editor = atom.workspace.getActiveTextEditor()
         editor.setText("// ftp://github.com\n")
 
         spyOn(shell, 'openExternal')
-        editorView.trigger('link:open')
+        atom.commands.dispatch(atom.views.getView(editor), 'link:open')
         expect(shell.openExternal).not.toHaveBeenCalled()
 
         editor.setCursorBufferPosition([0,5])
-        editorView.trigger('link:open')
+        atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).not.toHaveBeenCalled()

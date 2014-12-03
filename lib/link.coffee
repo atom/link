@@ -6,19 +6,21 @@ selector = null
 
 module.exports =
   activate: ->
-    atom.workspaceView.command 'link:open', =>
-      editor = atom.workspace.getActiveEditor()
-      return unless editor?
+    atom.commands.add('atom-workspace', 'link:open', openLink)
 
-      link = linkUnderCursor(editor)
-      return unless link?
+openLink = ->
+  editor = atom.workspace.getActiveTextEditor()
+  return unless editor?
 
-      if editor.getGrammar().scopeName is 'source.gfm'
-        link = linkForName(editor.getBuffer(), link)
+  link = linkUnderCursor(editor)
+  return unless link?
 
-      {protocol} = url.parse(link)
-      if protocol is 'http:' or protocol is 'https:'
-        shell.openExternal(link)
+  if editor.getGrammar().scopeName is 'source.gfm'
+    link = linkForName(editor.getBuffer(), link)
+
+  {protocol} = url.parse(link)
+  if protocol is 'http:' or protocol is 'https:'
+    shell.openExternal(link)
 
 # Get the link under the cursor in the editor
 #
@@ -31,7 +33,6 @@ linkUnderCursor = (editor) ->
   # Look for a link to the left of the cursor
   if cursorPosition.column > 0
     linkAtPosition(editor, cursorPosition.translate([0, -1]))
-
 
 # Get the link at the buffer position in the editor.
 #
