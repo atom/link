@@ -8,7 +8,9 @@
   "engines": {
     "atom": "*"
   },
-  "activationEvents": "link:open",
+  "activationCommands": {
+    "atom-workspace": ["link:open"]
+  },
   "dependencies": {
     "first-mate": "2.x",
     "underscore-plus": "1.x"
