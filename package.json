@@ -1,6 +1,6 @@
 {
   "name": "link",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "main": "./lib/link",
   "description": "Opens http/https links under the cursor using `ctrl-shift-o`.",
   "license": "MIT",
@@ -9,7 +9,9 @@
     "atom": "*"
   },
   "activationCommands": {
-    "atom-workspace": ["link:open"]
+    "atom-workspace": [
+      "link:open"
+    ]
   },
   "dependencies": {
     "first-mate": "2.x",
