@@ -29,21 +29,21 @@ describe "link package", ->
         atom.commands.dispatch(atom.views.getView(editor), 'link:open')
         expect(shell.openExternal).not.toHaveBeenCalled()
 
-        editor.setCursorBufferPosition([0,4])
+        editor.setCursorBufferPosition([0, 4])
         atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).toHaveBeenCalled()
         expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
 
         shell.openExternal.reset()
-        editor.setCursorBufferPosition([0,8])
+        editor.setCursorBufferPosition([0, 8])
         atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).toHaveBeenCalled()
         expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
 
         shell.openExternal.reset()
-        editor.setCursorBufferPosition([0,21])
+        editor.setCursorBufferPosition([0, 21])
         atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).toHaveBeenCalled()
@@ -64,18 +64,18 @@ describe "link package", ->
           """
 
           spyOn(shell, 'openExternal')
-          editor.setCursorBufferPosition([0,0])
+          editor.setCursorBufferPosition([0, 0])
           atom.commands.dispatch(atom.views.getView(editor), 'link:open')
           expect(shell.openExternal).not.toHaveBeenCalled()
 
-          editor.setCursorBufferPosition([0,20])
+          editor.setCursorBufferPosition([0, 20])
           atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
           expect(shell.openExternal).toHaveBeenCalled()
           expect(shell.openExternal.argsForCall[0][0]).toBe 'http://github.com'
 
           shell.openExternal.reset()
-          editor.setCursorBufferPosition([1,24])
+          editor.setCursorBufferPosition([1, 24])
           atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
           expect(shell.openExternal).not.toHaveBeenCalled()
@@ -92,7 +92,7 @@ describe "link package", ->
         atom.commands.dispatch(atom.views.getView(editor), 'link:open')
         expect(shell.openExternal).not.toHaveBeenCalled()
 
-        editor.setCursorBufferPosition([0,5])
+        editor.setCursorBufferPosition([0, 5])
         atom.commands.dispatch(atom.views.getView(editor), 'link:open')
 
         expect(shell.openExternal).not.toHaveBeenCalled()
