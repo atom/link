@@ -1,6 +1,5 @@
 url = require 'url'
-# TODO: Remove the catch once Atom 1.7.0 is released
-try {shell} = require 'electron' catch then shell = require 'shell'
+{shell} = require 'electron'
 _ = require 'underscore-plus'
 
 selector = null
