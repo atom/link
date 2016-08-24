@@ -14,7 +14,7 @@
     ]
   },
   "dependencies": {
-    "first-mate": "^5.0",
+    "first-mate": "6.0.0",
     "underscore-plus": "1.x"
   },
   "devDependencies": {
