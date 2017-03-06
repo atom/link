@@ -1,6 +1,6 @@
 {
   "name": "link",
-  "version": "0.31.2",
+  "version": "0.31.3",
   "main": "./lib/link",
   "description": "Opens http/https links under the cursor using `ctrl-shift-o`.",
   "license": "MIT",
