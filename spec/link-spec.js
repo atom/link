@@ -1,8 +1,8 @@
 const {shell} = require('electron')
 
-const {it, fit, ffit, afterEach, beforeEach} = require('./async-spec-helpers')
+const {it, fit, ffit, afterEach, beforeEach} = require('./async-spec-helpers') // eslint-disable-line no-unused-vars
 
-describe("link package", () => {
+describe('link package', () => {
   beforeEach(async () => {
     await atom.packages.activatePackage('language-gfm')
     await atom.packages.activatePackage('language-javascript')
@@ -13,7 +13,7 @@ describe("link package", () => {
     await activationPromise
   })
 
-  describe("when the cursor is on a link", () => {
+  describe('when the cursor is on a link', () => {
     it("opens the link using the 'open' command", async () => {
       await atom.workspace.open('sample.js')
 
@@ -45,8 +45,8 @@ describe("link package", () => {
       expect(shell.openExternal.argsForCall[0][0]).toBe('http://github.com')
     })
 
-    describe("when the cursor is on a [name][url-name] style markdown link", () =>
-      it("opens the named url", async () => {
+    describe('when the cursor is on a [name][url-name] style markdown link', () =>
+      it('opens the named url', async () => {
         await atom.workspace.open('README.md')
 
         const editor = atom.workspace.getActiveTextEditor()
@@ -77,11 +77,11 @@ you should not [click][her]
       })
     )
 
-    it("does not open non http/https links", async () => {
+    it('does not open non http/https links', async () => {
       await atom.workspace.open('sample.js')
 
       const editor = atom.workspace.getActiveTextEditor()
-      editor.setText("// ftp://github.com\n")
+      editor.setText('// ftp://github.com\n')
 
       spyOn(shell, 'openExternal')
       atom.commands.dispatch(atom.views.getView(editor), 'link:open')
