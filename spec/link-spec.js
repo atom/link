@@ -44,6 +44,37 @@ describe('link package', () => {
       expect(shell.openExternal.argsForCall[0][0]).toBe('http://github.com')
     })
 
+    it("opens an 'atom:' link", async () => {
+      await atom.workspace.open('sample.js')
+
+      const editor = atom.workspace.getActiveTextEditor()
+      editor.setText('// "atom://core/open/file?filename=sample.js&line=1&column=2"')
+
+      spyOn(shell, 'openExternal')
+      atom.commands.dispatch(atom.views.getView(editor), 'link:open')
+      expect(shell.openExternal).not.toHaveBeenCalled()
+
+      editor.setCursorBufferPosition([0, 4])
+      atom.commands.dispatch(atom.views.getView(editor), 'link:open')
+
+      expect(shell.openExternal).toHaveBeenCalled()
+      expect(shell.openExternal.argsForCall[0][0]).toBe('atom://core/open/file?filename=sample.js&line=1&column=2')
+
+      shell.openExternal.reset()
+      editor.setCursorBufferPosition([0, 8])
+      atom.commands.dispatch(atom.views.getView(editor), 'link:open')
+
+      expect(shell.openExternal).toHaveBeenCalled()
+      expect(shell.openExternal.argsForCall[0][0]).toBe('atom://core/open/file?filename=sample.js&line=1&column=2')
+
+      shell.openExternal.reset()
+      editor.setCursorBufferPosition([0, 60])
+      atom.commands.dispatch(atom.views.getView(editor), 'link:open')
+
+      expect(shell.openExternal).toHaveBeenCalled()
+      expect(shell.openExternal.argsForCall[0][0]).toBe('atom://core/open/file?filename=sample.js&line=1&column=2')
+    })
+
     describe('when the cursor is on a [name][url-name] style markdown link', () =>
       it('opens the named url', async () => {
         await atom.workspace.open('README.md')
