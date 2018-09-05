@@ -5,7 +5,6 @@ const {it, fit, ffit, afterEach, beforeEach} = require('./async-spec-helpers') /
 describe('link package', () => {
   beforeEach(async () => {
     await atom.packages.activatePackage('language-gfm')
-    await atom.packages.activatePackage('language-javascript')
     await atom.packages.activatePackage('language-hyperlink')
 
     const activationPromise = atom.packages.activatePackage('link')
@@ -15,7 +14,7 @@ describe('link package', () => {
 
   describe('when the cursor is on a link', () => {
     it("opens the link using the 'open' command", async () => {
-      await atom.workspace.open('sample.js')
+      await atom.workspace.open('sample.md')
 
       const editor = atom.workspace.getActiveTextEditor()
       editor.setText('// "http://github.com"')
@@ -78,7 +77,7 @@ you should not [click][her]
     )
 
     it('does not open non http/https links', async () => {
-      await atom.workspace.open('sample.js')
+      await atom.workspace.open('sample.txt')
 
       const editor = atom.workspace.getActiveTextEditor()
       editor.setText('// ftp://github.com\n')
