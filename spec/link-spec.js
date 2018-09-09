@@ -49,7 +49,7 @@ describe('link package', () => {
     const atomVersion = atom.getVersion().split('.')
     if (+atomVersion[0] > 1 || +atomVersion[1] >= 32) {
       it("opens an 'atom:' link", async () => {
-        await atom.workspace.open('sample.js')
+        await atom.workspace.open('sample.md')
 
         const editor = atom.workspace.getActiveTextEditor()
         editor.setText('// "atom://core/open/file?filename=sample.js&line=1&column=2"')
@@ -112,8 +112,8 @@ you should not [click][her]
       })
     )
 
-    it('does not open non http/https links', async () => {
-      await atom.workspace.open('sample.txt')
+    it('does not open non http/https/atom links', async () => {
+      await atom.workspace.open('sample.md')
 
       const editor = atom.workspace.getActiveTextEditor()
       editor.setText('// ftp://github.com\n')
